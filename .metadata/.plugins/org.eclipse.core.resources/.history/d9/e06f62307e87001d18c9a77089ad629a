@@ -1,0 +1,31 @@
+package automaton2;
+
+public class Runner {
+	public Alert alert1, alert2, alert3;
+	
+	public void viewAlertsCorrect() {
+		// the idea is to run a function for every possible transition
+		// (numberOfAlertsPosted <= 5 && visibleAlerts == numberOfAlertsPosted) -> viewingAlerts (normal state)
+		this.numberOfAlertsPosted = 3;
+		this.visibleAlerts = 3;
+	}
+	
+	
+	public void viewAlertsBadState() {
+		// (numberOfAlertsPosted >= 5 && visibleAlerts > 5) -> badState
+		this.numberOfAlertsPosted = 7;
+		this.visibleAlerts = 7;
+	}
+	
+	public void run() {
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Runner runner = new Runner();
+		runner.run();
+
+	}
+
+}

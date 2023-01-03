@@ -1,0 +1,36 @@
+GLOBAL {
+	VARIABLES {
+		int numberOfAlertsPosted;
+		int visibleAlerts;
+	}
+	
+	EVENTS {
+		viewAlertsCorrect1() = {*.viewAlertsCorrect1()}
+		viewAlertsCorrect2() = {*.viewAlertsCorrect2()}
+		viewAlertsBadState1() = {*.viewAlertsBadState1()}
+		viewAlertsBadState2() = {*.viewAlertsBadState2()}
+	}
+	
+	PROPERTY alert_layout_limit_prop {
+		STATES {
+			BAD {
+				badState
+			}
+			
+			NORMAL {
+				viewingAlerts
+			}
+			
+			STARTING {
+				loggedIn
+			}
+		}
+		
+		TRANSITIONS {
+			loggedIn -> viewingAlerts [viewAlertsCorrect1\\System.out.println("viewingAlerts event");]
+			loggedIn -> viewingAlerts [viewAlertsCorrect2\\System.out.println("viewingAlerts event");]
+			loggedIn -> badState [viewAlertsBadState1\\System.out.println("Entered bad state!");]
+			loggedIn -> badState [viewAlertsBadState2\\System.out.println("Entered bad state!");]
+		}
+	}
+}

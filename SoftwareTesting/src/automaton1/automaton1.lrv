@@ -1,0 +1,30 @@
+GLOBAL {
+	VARIABLES {
+		boolean loggedIn = false;
+	}
+	
+	EVENTS {
+		invalidLogin() = {*.invalidLogin()} %% attempts to log in incorrectly
+		validLogin() = {*.validLogin()} %% logs in correctly and sets loggedIn = true in Runner function;
+		logOut() = {*.logOut()} %% sets loggedIn = false again in Runner function
+	}
+	
+	PROPERTY valid_invalid_logins_prop {
+		STATES {
+		NORMAL {
+				loggedIn
+			}
+			
+			STARTING {
+				loggedOut
+			}
+		}
+		
+		TRANSITIONS {
+			loggedOut -> loggedOut [invalidLogin\\System.out.println("invalidLogin event");]
+			loggedOut -> loggedIn [validLogin\\loggedIn = true;System.out.println("validLogin event");]
+			loggedIn -> loggedOut [logOut\\loggedIn = false;System.out.println("logOut event");]
+%%			loggedIn -> loggedIn [logIn\loggedIn == true;\System.out.println("Already logged in! Entering bad state.");]
+		}
+	}
+}

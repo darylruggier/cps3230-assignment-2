@@ -1,0 +1,30 @@
+GLOBAL {
+	VARIABLES {
+		boolean alertsAreVerified = true;
+	}
+	
+	EVENTS {
+		viewAlerts() = {*.viewAlerts()}
+	}
+	
+	PROPERTY alert_layout_prop {
+		STATES {
+			BAD {
+				badState
+			}
+			
+			NORMAL {
+				viewingAlerts
+			}
+			
+			STARTING {
+				loggedIn
+			}
+		}
+		
+		TRANSITIONS {
+			loggedIn -> viewingAlerts [viewAlerts\alertsAreVerified == true\System.out.println("Alert Layouts are Valid!");]
+			loggedIn -> badState [viewAlerts\alertsAreVerified == false\System.out.println("Invalid alert layouts! Entering bad state!");]
+		}
+	}
+}

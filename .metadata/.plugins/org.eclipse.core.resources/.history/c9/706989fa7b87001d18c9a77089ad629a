@@ -1,0 +1,37 @@
+IMPORTS {
+	import automaton2.Alert;
+}
+
+GLOBAL {
+	VARIABLES {
+		int numberOfAlertsPosted;
+		int visibleAlerts;
+	}
+	
+	EVENTS {
+		viewAlerts() = {*.viewAlerts()}
+	}
+	
+	PROPERTY alert_layout_limit_prop {
+		STATES {
+			BAD {
+				badState
+			}
+			
+			NORMAL {
+				viewingAlerts
+			}
+			
+			STARTING {
+				loggedIn
+			}
+		}
+		
+		TRANSITIONS {
+			loggedIn -> viewingAlerts [viewAlerts\numberOfAlertsPosted >= 5 && visibleAlerts == 5\System.out.println("viewingAlerts event");]
+			loggedIn -> viewingAlerts [viewAlerts\numberOfAlertsPosted <= 5 && visibleAlerts == numberOfAlertsPosted\System.out.println("viewingAlerts event");]
+			loggedIn -> badState [viewAlerts\numberOfAlertsPosted >= 5 && visibleAlerts > 5\System.out.println("Entered bad state!");]
+			loggedIn -> badState [viewAlerts\numberOfAlertsPosted <= 5 && visibleAlerts != numberOfAlertsPosted\System.out.println("Entered bad state!");]
+		}
+	}
+}

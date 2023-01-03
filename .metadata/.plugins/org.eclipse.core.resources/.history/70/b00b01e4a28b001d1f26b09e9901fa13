@@ -1,0 +1,120 @@
+package automaton1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Runner {
+	boolean loggedIn;
+	
+	public StringBuffer getEventLog() throws IOException {
+        int responseCode;
+        StringBuffer response = new StringBuffer();
+        
+        
+        URL requestURL = new URL("https://api.marketalertum.com/EventsLog/d6353e3c-9340-444d-93ee-371dcfeffb27");
+        HttpURLConnection con = (HttpURLConnection) requestURL.openConnection();
+        con.setRequestMethod("GET");
+        
+        responseCode = con.getResponseCode();
+        
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String inputLine;
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+		} else {
+			System.out.println("GET request did not work.");
+		}
+        con.disconnect();
+        return response;
+    }
+	
+	
+//	public StringBuffer getLoginStatus() throws IOException {
+//        int responseCode;
+//        StringBuffer response = new StringBuffer();
+//        
+//        
+//        URL requestURL = new URL("https://api.marketalertum.com/EventsLog/d6353e3c-9340-444d-93ee-371dcfeffb27/login-status");
+//        HttpURLConnection con = (HttpURLConnection) requestURL.openConnection();
+//        con.setRequestMethod("GET");
+//        
+//        responseCode = con.getResponseCode();
+//        
+//        if (responseCode == HttpURLConnection.HTTP_OK) {
+//			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//			String inputLine;
+//
+//			while ((inputLine = in.readLine()) != null) {
+//				response.append(inputLine);
+//			}
+//			in.close();
+//		} else {
+//			System.out.println("GET request did not work.");
+//		}
+//        con.disconnect();
+//        return response;
+//    }
+	
+	
+	public void validLogin() throws IOException {
+		// log in correctly (enter correct userid)
+		// Set the path to the ChromeDriver executable
+//	    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Daryl\\Documents\\chromedriver.exe");
+//	    
+//		WebDriver driver = new ChromeDriver();
+//	    driver.get("https://www.marketalertum.com/");
+//
+//	    WebElement loginButton = driver.findElement(By.cssSelector("a[class='nav-link text-dark']"));
+//	    loginButton.click();
+//	    
+//	    WebElement loginInput = driver.findElement(By.id("UserId"));
+//	    loginInput.sendKeys("d6353e3c-9340-444d-93ee-371dcfeffb27");
+//	    
+//	    WebElement submitLoginButton = driver.findElement(By.xpath("//html//body//div//main//form//input[2]"));
+//	    submitLoginButton.click();
+//	    
+//	    StringBuffer loginStatus = this.getLoginStatus();
+	    
+
+	    
+		System.out.println("Valid login at: " + System.currentTimeMillis());
+		this.loggedIn = true;
+	}
+	
+	public void invalidLogin() {
+		// log in invalidly from website (enter wrong userid)
+		System.out.println("Invalid login at: " + System.currentTimeMillis());
+	}
+	
+	public void logOut() {
+		// log out from website
+		System.out.println("User logged out at: " + System.currentTimeMillis());
+		this.loggedIn = false;
+	}
+	
+	public void run() throws IOException {
+		invalidLogin();
+		invalidLogin();
+		validLogin();
+		logOut();
+	}
+	
+	
+	public static void main(String[] args) throws IOException {
+		Runner runner = new Runner();
+		runner.run();
+	}
+
+}

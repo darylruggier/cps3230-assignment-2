@@ -1,0 +1,11 @@
+digraph _logic_alert_layout_limit_prop {
+rankdir=LR;
+node [shape = circle]; viewingAlerts loggedIn;
+node [shape = octagon]; badState;
+node [shape = point]; _s_s;
+_s_s -> loggedIn;
+loggedIn -> viewingAlerts [ label = "(1) viewAlertsCorrect1\\\\System . out . println ( \" viewingAlerts event \" ) ; "];
+loggedIn -> viewingAlerts [ label = "(2) viewAlertsCorrect2\\\\System . out . println ( \" viewingAlerts event \" ) ; "];
+loggedIn -> badState [ label = "(3) viewAlertsBadState1\\\\System . out . println ( \" Entered bad state! \" ) ; "];
+loggedIn -> badState [ label = "(4) viewAlertsBadState2\\\\System . out . println ( \" Entered bad state! \" ) ; "];
+}

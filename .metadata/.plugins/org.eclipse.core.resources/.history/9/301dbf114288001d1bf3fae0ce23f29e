@@ -1,0 +1,18 @@
+package automaton2;
+
+public class Alert {
+	public String icon = null;
+	public String heading = null;
+	public String description = null;
+	public String image = null;
+	public Float price = null;
+	public String linkToProduct = null;
+	
+	public boolean alertContainsValidProperties() {
+		if (this.icon != null && this.heading != null && this.heading != null &&
+				this.heading != null && this.heading != null) {
+			return true;
+		}
+		return false;
+	}
+}

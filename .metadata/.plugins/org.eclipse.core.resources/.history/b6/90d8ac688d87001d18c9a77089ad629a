@@ -1,0 +1,83 @@
+package automaton2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
+public class Runner {
+	public Alert alert1, alert2, alert3;
+	
+	public StringBuffer getEventLog() throws IOException {
+        int responseCode;
+        StringBuffer response = new StringBuffer();
+        
+        
+        URL requestURL = new URL("https://api.marketalertum.com/EventsLog/d6353e3c-9340-444d-93ee-371dcfeffb27");
+        HttpURLConnection con = (HttpURLConnection) requestURL.openConnection();
+        con.setRequestMethod("GET");
+        
+        responseCode = con.getResponseCode();
+        
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String inputLine;
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+		} else {
+			System.out.println("GET request did not work.");
+		}
+        con.disconnect();
+        return response;
+    }
+	
+	public int postAlert(Alert alert) throws IOException {
+		int responseCode;
+        
+        URL requestURL = new URL("https://api.marketalertum.com/Alert");
+        HttpURLConnection con = (HttpURLConnection) requestURL.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("Accept", "application/json");
+        con.setDoOutput(true);
+        byte[] out = alert.getBytes(StandardCharsets.UTF_8);
+        OutputStream outputStream = con.getOutputStream();
+        outputStream.write(out);
+        
+        responseCode = con.getResponseCode();
+        con.disconnect();
+        return responseCode;
+	}
+	
+	public void viewAlertsCorrect() {
+		// POST 3 alerts
+		postAlert();
+		
+		// get eventslog and confirm that the alerts contain valid layout.
+		// i.e. go through eventslog array (given that the eventlog response is valid)
+		// and for each array (i.e. for each alert) run alert.validlayout()
+		
+	}
+	
+	public void viewAlertsBadState() {
+		
+	}
+	
+	
+	public void run() {
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Runner runner = new Runner();
+		runner.run();
+	}
+
+}

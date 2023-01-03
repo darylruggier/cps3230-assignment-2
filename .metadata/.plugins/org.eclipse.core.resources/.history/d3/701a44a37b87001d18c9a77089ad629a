@@ -1,0 +1,10 @@
+package automaton2;
+
+public class Alert {
+	public String icon;
+	public String heading;
+	public String description;
+	public String image;
+	public float price;
+	public String linkToProduct;
+}

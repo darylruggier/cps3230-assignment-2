@@ -1,0 +1,9 @@
+digraph _logic_invalidLoginsProp {
+rankdir=LR;
+node [shape = circle]; loggedIn loggedOut;
+node [shape = point]; _s_s;
+_s_s -> loggedOut;
+loggedIn -> loggedOut [ label = "(1) logOut\\\\loggedIn = false ; System . out . println ( \" logOut event \" ) ; "];
+loggedOut -> loggedOut [ label = "(1) invalidLogin\\\\System . out . println ( \" invalidLogin event \" ) ; "];
+loggedOut -> loggedIn [ label = "(2) validLogin\\\\loggedIn = true ; System . out . println ( \" validLogin event \" ) ; "];
+}

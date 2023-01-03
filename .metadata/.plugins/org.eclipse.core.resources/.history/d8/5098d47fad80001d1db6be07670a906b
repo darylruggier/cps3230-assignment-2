@@ -1,0 +1,41 @@
+package automaton3;
+
+public class Runner {
+	int numberOfAlertsPosted;
+	int visibleAlerts;
+	
+	public void viewAlertsCorrect1() {
+		// the idea is to run a function for every possible transition
+		// e.g. in this function numberOfAlerts = 3 and visibleAlerts = 3
+		// e.g. in this function numberOfAlerts = 7 and visibleAlerts = 5
+		// add logic
+		
+	}
+	
+	public void viewAlertsCorrect2() {
+		// e.g. in this function numberOfAlerts = 7 and visibleAlerts = 5
+		// add logic
+	}
+	
+	public void viewAlertsBadState1() {
+		// e.g. in this function numberOfAlerts = 7 and visibleAlerts = 7
+		// add logic
+	}
+	
+	public void viewAlertsBadState2() {
+		// e.g. in this function numberOfAlerts = 3 and visibleAlerts = 2
+		// add logic
+	}
+	
+	public void run() {
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Runner runner = new Runner();
+		runner.run();
+
+	}
+
+}

@@ -1,0 +1,32 @@
+package automaton2;
+
+public class Alert {
+	int numberOfAlertsPosted;
+	int visibleAlerts;
+	
+	public void viewAlertsCorrect() {
+		// the idea is to run a function for every possible transition
+		// (numberOfAlertsPosted <= 5 && visibleAlerts == numberOfAlertsPosted) -> viewingAlerts (normal state)
+		this.numberOfAlertsPosted = 3;
+		this.visibleAlerts = 3;
+	}
+	
+	
+	public void viewAlertsBadState() {
+		// (numberOfAlertsPosted >= 5 && visibleAlerts > 5) -> badState
+		this.numberOfAlertsPosted = 7;
+		this.visibleAlerts = 7;
+	}
+	
+	public void run() {
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Alert runner = new Alert();
+		runner.run();
+
+	}
+
+}

@@ -1,0 +1,222 @@
+package automaton2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Random;
+
+import org.json.*;
+
+public class Runner {
+	public Alert alert1, alert2, alert3;
+	public boolean alertsAreVerified;
+	
+	public StringBuffer getEventLog() throws IOException {
+        int responseCode;
+        StringBuffer response = new StringBuffer();
+        
+        
+        URL requestURL = new URL("https://api.marketalertum.com/EventsLog/d6353e3c-9340-444d-93ee-371dcfeffb27");
+        HttpURLConnection con = (HttpURLConnection) requestURL.openConnection();
+        con.setRequestMethod("GET");
+        
+        responseCode = con.getResponseCode();
+        
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String inputLine;
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+		} else {
+			System.out.println("GET request did not work.");
+		}
+        con.disconnect();
+        return response;
+    }
+	
+	
+	public ArrayList<Integer> postAlerts() throws IOException {
+	    ArrayList<Integer> responseCodes = new ArrayList<>();
+	    int responseCode;
+	    
+	    URL requestURL = new URL("https://api.marketalertum.com/Alert");
+
+	    // Alert JSON objects
+	    JSONObject alert1 = new JSONObject();
+	    alert1.put("alertType", 6);
+	    alert1.put("heading", "Apple 2021 MacBook Pro (16-inch, M1 Pro chip with 10‑core CPU and 16‑core GPU, 16GB RAM, 512GB SSD) - Space Gray");
+	    alert1.put("description", "Apple 2021 MacBook Pro (16-inch, M1 Pro ");
+	    alert1.put("url", "https://www.amazon.com/Apple-MacBook-16-inch-10%E2%80%91core-16%E2%80%91core/dp/B09JQKBQSB/ref=sr_1_3?crid=2HLNYAXPELA9S&keywords=macbook+pro+m1&qid=1672408403&sprefix=macbook+pro+%2Caps%2C255&sr=8-3");
+	    alert1.put("imageUrl", "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61aUBxqc5PL._AC_SL1500_.jpg");
+	    alert1.put("postedBy", "d6353e3c-9340-444d-93ee-371dcfeffb27");
+	    alert1.put("priceInCents", 184700);
+
+	    JSONObject alert2 = new JSONObject();
+	    alert2.put("alertType", 6);
+	    alert2.put("heading", "iPhone 13 Pro Max, 128GB, Sierra Blue - Unlocked (Renewed Premium)");
+	    alert2.put("description", "iPhone 13 Pro Max");
+	    alert2.put("url", "https://www.amazon.com/iPhone-Pro-128GB-Sierra-Blue/dp/B0BGYG5GSJ/ref=sr_1_2?crid=QG1AVG17XB5Q&keywords=iphone%2B14&qid=1672408495&sprefix=iphone%2B14%2Bpro%2Caps%2C183&sr=8-2&th=1");
+	    alert2.put("imageUrl", "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/61i8Vjb17SL._AC_SL1500_.jpg");
+	    alert2.put("postedBy", "d6353e3c-9340-444d-93ee-371dcfeffb27");
+	    alert2.put("priceInCents", 102900);
+
+	    JSONObject alert3 = new JSONObject();
+	    alert3.put("alertType", 6);
+	    alert3.put("heading", "Flipper Zero");
+	    alert3.put("description", "Flipper Zero");
+	    alert3.put("url", "https://www.amazon.com/Flipper-FLP-Z-W-R04-Zero/dp/B0BFXKSFNT/ref=sr_1_2?crid=26JUTQE59ISHH&keywords=flipper+zero&qid=1672408568&sprefix=flipper+ze%2Caps%2C189&sr=8-2");
+	    alert3.put("imageUrl", "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/51xPGmiNQGL._AC_.jpg");
+	    alert3.put("postedBy", "d6353e3c-9340-444d-93ee-371dcfeffb27");
+	    alert3.put("priceInCents", 37999);
+	    
+	    HttpURLConnection http = (HttpURLConnection) requestURL.openConnection();
+	    http.setRequestMethod("POST");
+	    http.setRequestProperty("Content-Type", "application/json");
+	    http.setRequestProperty("Accept", "application/json");
+	    http.setDoOutput(true);
+	    
+	    
+	    // Converting the JSON object to a string and writing it to the output stream
+	    byte[] out = alert1.toString().getBytes(StandardCharsets.UTF_8);
+	    OutputStream outputStream = http.getOutputStream();
+	    outputStream.write(out);
+	    
+	    responseCode = http.getResponseCode();
+	    if (responseCode != 201) {
+	    	String responseMessage = http.getResponseMessage();
+	    	System.out.println("Response Messasge: " + responseMessage);
+	    }
+	    http.disconnect();
+	    responseCodes.add(responseCode);
+	    
+	    http = (HttpURLConnection) requestURL.openConnection();
+	    http.setRequestMethod("POST");
+	    http.setRequestProperty("Content-Type", "application/json");
+	    http.setRequestProperty("Accept", "application/json");
+	    http.setDoOutput(true);
+	    
+	    out = alert2.toString().getBytes(StandardCharsets.UTF_8);
+	    outputStream = http.getOutputStream();
+	    outputStream.write(out);
+	    
+	    responseCode = http.getResponseCode();
+	    if (responseCode != 201) {
+	    	String responseMessage = http.getResponseMessage();
+	    	System.out.println("Response Messasge: " + responseMessage);
+	    }
+	    http.disconnect();
+	    responseCodes.add(responseCode);
+	    
+	    
+	    http = (HttpURLConnection) requestURL.openConnection();
+	    http.setRequestMethod("POST");
+	    http.setRequestProperty("Content-Type", "application/json");
+	    http.setRequestProperty("Accept", "application/json");
+	    http.setDoOutput(true);
+	    
+	    
+	    // Converting the JSON object to a string and writing it to the output stream
+	    out = alert3.toString().getBytes(StandardCharsets.UTF_8);
+	    outputStream = http.getOutputStream();
+	    outputStream.write(out);
+	    
+	    responseCode = http.getResponseCode();
+	    if (responseCode != 201) {
+	    	String responseMessage = http.getResponseMessage();
+	    	System.out.println("Response Messasge: " + responseMessage);
+	    }
+	    http.disconnect();
+	    responseCodes.add(responseCode);
+	    
+	    return responseCodes;
+	}
+	
+	
+	public void viewAlerts() throws IOException {
+		final Random rand = new Random();
+		final int randomNumber = rand.nextInt(10);
+
+
+		System.out.println("Viewing Alerts");
+		ArrayList<Alert> alerts = new ArrayList<Alert>();
+		// get eventslog and confirm that the alerts contain valid layout.
+		// i.e. go through eventslog array (given that the eventlog response is valid)
+		// and for each array (i.e. for each alert) run alert.validlayout()
+		
+		StringBuffer eventsLogResponse = getEventLog();
+		JSONArray eventsArray = new JSONArray(eventsLogResponse.toString());
+
+		for (int i = 0; i < eventsArray.length(); i++) {
+		    JSONObject event = eventsArray.getJSONObject(i);
+		    int eventLogType = event.getInt("eventLogType");
+		    if (eventLogType == 0) {
+		        JSONObject systemState = event.getJSONObject("systemState");
+		        JSONArray alertsArray = systemState.getJSONArray("alerts");
+		        for (int j = 0; j < alertsArray.length(); j++) {
+		            JSONObject alert = alertsArray.getJSONObject(j);
+		            String id = alert.getString("id");
+		            int alertType = alert.getInt("alertType");
+		            String heading = alert.getString("heading");
+		            String description = alert.getString("description");
+		            String url = alert.getString("url");
+		            String imageURL = alert.getString("imageURL");
+		            int priceInCents = alert.getInt("priceInCents");
+		            
+		            Alert alertObject = new Alert(alertType, heading, description, imageURL, priceInCents, url);
+		            alerts.add(alertObject);
+		        }
+		    }
+		}
+		
+		randomNumber = rand.nextInt(10);
+		if (randomNumber < 7) {
+			this.alertsAreVerified = this.validateAlerts(alerts);
+		} else {
+			this.alertsAreVerified = !(this.validateAlerts(alerts));
+		}
+	}
+	
+	public boolean validateAlerts(ArrayList<Alert> alerts) {
+		for (Alert alert: alerts) {
+			if (alert.icon == null || alert.heading == null || alert.description == null || alert.image == null || alert.price == null || alert.linkToProduct == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	
+	public void run() throws IOException {
+		while (true) {
+			
+			// POSTing 3 Alerts
+			 ArrayList<Integer> postAlertResponseCodes = this.postAlerts();
+			 for (int postAlertResponseCode: postAlertResponseCodes) {
+				 if (postAlertResponseCode != 201) {
+					 System.out.println("POST Request Failed! Response is returning " + postAlertResponseCode);
+					 return;
+				 }
+			 }
+			 System.out.println("Alerts posted successfully");
+			 
+			// Viewing & verifying that the Alerts have the correct layouts
+			this.viewAlerts();
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) throws IOException {
+		Runner runner = new Runner();
+		runner.run();
+	}
+
+}

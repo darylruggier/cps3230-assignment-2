@@ -1,0 +1,8 @@
+[alert_layout_prop]AUTOMATON::> alert_layout_prop() STATE::>loggedIn
+Invalid alert layouts! Entering bad state!
+[alert_layout_prop]MOVED ON METHODCALL: void automaton2.Runner.viewAlerts() TO STATE::> !!!SYSTEM REACHED BAD STATE!!! badState 
+aspects._asp_automaton_20.ajc$before$aspects__asp_automaton_20$2$e175b9e5(_asp_automaton_20.aj:21)
+automaton2.Runner.run(Runner.java:210)
+automaton2.Runner.main(Runner.java:218) 
+[alert_layout_prop]AUTOMATON::> alert_layout_prop() STATE::>badState
+[alert_layout_prop]AUTOMATON::> alert_layout_prop() STATE::>badState

@@ -1,0 +1,6 @@
+[alert_icon_type_prop]AUTOMATON::> alert_icon_type_prop() STATE::>loggedIn
+Alert not found - entered bad state!
+[alert_icon_type_prop]MOVED ON METHODCALL: void automaton4.Runner.viewAlert_alertNotFound() TO STATE::> !!!SYSTEM REACHED BAD STATE!!! badState 
+aspects._asp_automaton40.ajc$before$aspects__asp_automaton40$3$85bc9e36(_asp_automaton40.aj:30)
+automaton4.Runner.run(Runner.java:37)
+automaton4.Runner.main(Runner.java:45) 

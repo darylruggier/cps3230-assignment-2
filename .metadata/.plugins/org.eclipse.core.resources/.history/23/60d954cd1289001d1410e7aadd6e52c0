@@ -1,0 +1,5 @@
+[alert_layout_prop]AUTOMATON::> alert_layout_prop() STATE::>loggedIn
+Alert Layouts are Valid!
+[alert_layout_prop]MOVED ON METHODCALL: void automaton2.Runner.viewAlertsWithValidLayout() TO STATE::> viewingAlerts
+[alert_layout_prop]AUTOMATON::> alert_layout_prop() STATE::>viewingAlerts
+[alert_layout_prop]AUTOMATON::> alert_layout_prop() STATE::>viewingAlerts

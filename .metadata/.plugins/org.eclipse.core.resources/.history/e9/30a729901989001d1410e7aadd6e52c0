@@ -1,0 +1,35 @@
+GLOBAL {
+	VARIABLES {
+		int postedAlertIconType;
+		int visibleAlerts;
+		int visibleAlertIconType;
+	}
+	
+	EVENTS {
+		viewAlert_correctAlertType() = {*.viewAlert_correctAlertType()}
+		viewAlert_mismatchingAlertType() = {*.viewAlert_mismatchingAlertType()}
+		viewAlert_alertNotFound() = {*.viewAlert_alertNotFound()}
+	}
+	
+	PROPERTY alert_icon_type_prop {
+		STATES {
+			BAD {
+				badState
+			}
+			
+			NORMAL {
+				viewingAlerts
+			}
+			
+			STARTING {
+				loggedIn
+			}
+		}
+		
+		TRANSITIONS {
+			loggedIn -> viewingAlerts [viewAlerts\visibleAlertIconType == postedAlertIconType\System.out.println("viewingAlerts event");]
+			loggedIn -> badState [viewAlerts\visibleAlertIconType != postedAlertIconType\System.out.println("Entered bad state!");]
+			loggedIn -> badState [viewAlerts\visibleAlerts == 0\System.out.println("Entered bad state!");]
+		}
+	}
+}

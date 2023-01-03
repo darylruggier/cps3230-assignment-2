@@ -1,0 +1,9 @@
+digraph _logic_alert_layout_prop {
+rankdir=LR;
+node [shape = circle]; viewingAlerts loggedIn;
+node [shape = octagon]; badState;
+node [shape = point]; _s_s;
+_s_s -> loggedIn;
+loggedIn -> viewingAlerts [ label = "(1) viewAlertsWithValidLayout\\\\alertsAreVerified = true ; System . out . println ( \" Alert Layouts are Valid! \" ) ; "];
+loggedIn -> badState [ label = "(2) viewAlertsWithInvalidLayout\\\\alertsAreVerified = false ; System . out . println ( \" Invalid alert layouts! Entering bad state! \" ) ; "];
+}

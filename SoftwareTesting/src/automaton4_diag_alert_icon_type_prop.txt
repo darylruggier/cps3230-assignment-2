@@ -1,0 +1,10 @@
+digraph _logic_alert_icon_type_prop {
+rankdir=LR;
+node [shape = circle]; viewingAlerts loggedIn;
+node [shape = octagon]; badState;
+node [shape = point]; _s_s;
+_s_s -> loggedIn;
+loggedIn -> viewingAlerts [ label = "(1) viewAlert_correctAlertType\\\\System . out . println ( \" viewingAlerts event \" ) ; "];
+loggedIn -> badState [ label = "(2) viewAlert_mismatchingAlertType\\\\System . out . println ( \" Mismatching alert type - entered bad state! \" ) ; "];
+loggedIn -> badState [ label = "(3) viewAlert_alertNotFound\\\\System . out . println ( \" Alert not found - entered bad state! \" ) ; "];
+}

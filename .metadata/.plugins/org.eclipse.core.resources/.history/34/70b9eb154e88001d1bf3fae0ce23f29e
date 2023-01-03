@@ -1,0 +1,36 @@
+IMPORTS {
+	import automaton2.Alert;
+}
+
+GLOBAL {
+	VARIABLES {
+		Alert alert1, alert2, alert3;
+	}
+	
+	EVENTS {
+		viewAlertsCorrect() = {*.viewAlertsCorrect()}
+		viewAlertsBadState() = {*.viewAlertsBadState()}
+		
+	}
+	
+	PROPERTY alert_layout_prop {
+		STATES {
+			BAD {
+				badState
+			}
+			
+			NORMAL {
+				viewingAlerts
+			}
+			
+			STARTING {
+				loggedIn
+			}
+		}
+		
+		TRANSITIONS {
+			loggedIn -> viewingAlerts [viewAlerts\alert1.alertContainsValidProperties() == true && alert2.alertContainsValidProperties == true && alert3.alertContainsValidProperties == true\System.out.println("Alert Layouts are Valid!");]
+			loggedIn -> badState [viewAlerts\alert1.alertContainsValidProperties() == false || alert2.alertContainsValidProperties == false || alert3.alertContainsValidProperties == false\System.out.println("Invalid alert layouts! Entering bad state!");]
+		}
+	}
+}

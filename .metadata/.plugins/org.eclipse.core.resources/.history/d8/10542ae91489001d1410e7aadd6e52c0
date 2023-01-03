@@ -1,0 +1,12 @@
+[valid_invalid_logins_prop]AUTOMATON::> valid_invalid_logins_prop() STATE::>loggedOut
+invalidLogin event
+[valid_invalid_logins_prop]MOVED ON METHODCALL: void automaton1.Runner.invalidLogin() TO STATE::> loggedOut
+[valid_invalid_logins_prop]AUTOMATON::> valid_invalid_logins_prop() STATE::>loggedOut
+invalidLogin event
+[valid_invalid_logins_prop]MOVED ON METHODCALL: void automaton1.Runner.invalidLogin() TO STATE::> loggedOut
+[valid_invalid_logins_prop]AUTOMATON::> valid_invalid_logins_prop() STATE::>loggedOut
+validLogin event
+[valid_invalid_logins_prop]MOVED ON METHODCALL: void automaton1.Runner.validLogin() TO STATE::> loggedIn
+[valid_invalid_logins_prop]AUTOMATON::> valid_invalid_logins_prop() STATE::>loggedIn
+logOut event
+[valid_invalid_logins_prop]MOVED ON METHODCALL: void automaton1.Runner.logOut() TO STATE::> loggedOut

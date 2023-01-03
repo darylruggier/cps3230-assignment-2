@@ -1,0 +1,58 @@
+package automaton1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Runner {
+	boolean loggedIn;
+	public void validLogin() {
+		// log in correctly (enter correct userid)
+		  // Set the path to the ChromeDriver executable
+	    System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+	    
+	    ChromeDriver driver = new ChromeDriver();
+	    driver.get("https://www.marketalertum.com/");
+
+	    WebElement loginForm = driver.findElement(By.id("login-form"));
+	    
+	    WebElement loginButton = loginForm.findElement(By.id("login-button"));
+	    loginButton.click();
+
+	    // Find the user ID input field and enter the user ID
+	    WebElement userIdField = loginForm.findElement(By.id("user-id-field"));
+	    userIdField.sendKeys("d6353e3c-9340-444d-93ee-371dcfeffb27");
+
+	    
+	    
+		System.out.println("Valid login at: " + System.currentTimeMillis());
+		this.loggedIn = true;
+	}
+	
+	public void invalidLogin() {
+		// log in invalidly from website (enter wrong userid)
+		System.out.println("Invalid login at: " + System.currentTimeMillis());
+	}
+	
+	public void logOut() {
+		// log out from website
+		System.out.println("User logged out at: " + System.currentTimeMillis());
+		this.loggedIn = false;
+	}
+	
+	public void run() {
+		// mocking some valid / invalid logins and some logouts
+		invalidLogin();
+		invalidLogin();
+		validLogin();
+		logOut();
+	}
+	
+	
+	public static void main(String[] args) {
+		Runner runner = new Runner();
+		runner.run();
+	}
+
+}

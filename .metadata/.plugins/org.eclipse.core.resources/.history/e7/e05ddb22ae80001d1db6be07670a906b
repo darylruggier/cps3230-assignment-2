@@ -1,0 +1,37 @@
+package automaton3;
+
+public class Runner {
+	int postedAlertIconType;
+	int visibleAlertIconType;
+	
+	public void correctAlertType() {
+		// the idea is to run a function for every possible transition
+		// add logic
+		this.postedAlertIconType = 1;
+		this.visibleAlertIconType = 1;
+	}
+	
+	public void mismatchingAlertType() {
+		// e.g. in this function 
+		// add logic
+		this.postedAlertIconType = 2;
+		this.visibleAlertIconType = 3;
+	}
+	
+	public void alertNotFound() {
+		// add logic
+	}
+	
+	
+	public void run() {
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Runner runner = new Runner();
+		runner.run();
+
+	}
+
+}

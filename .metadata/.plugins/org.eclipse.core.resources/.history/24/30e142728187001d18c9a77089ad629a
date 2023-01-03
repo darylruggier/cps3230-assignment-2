@@ -1,0 +1,26 @@
+package automaton2;
+
+public class Runner {
+	public Alert alert1, alert2, alert3;
+	
+	
+	public void viewAlertsCorrect() {
+		
+	}
+	
+	public void viewAlertsBadState() {
+		
+	}
+	
+	
+	public void run() {
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Runner runner = new Runner();
+		runner.run();
+	}
+
+}
